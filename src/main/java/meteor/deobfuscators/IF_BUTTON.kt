@@ -192,8 +192,8 @@ class IF_BUTTON : Deobfuscator {
                             val type = currentInstruction.toString().split("PacketBuffer.write")[1].split("(I)V")[0]
                             var argument = ""
                             when (currentObfuscatedStep) {
-                                1 -> argument = "hash"
-                                2 -> argument = "slot"
+                                1 -> argument = "param1"
+                                2 -> argument = "param0"
                                 3 -> argument = "itemId"
                             }
                             val structure = ObfuscatedBufferStructure(type, argument)

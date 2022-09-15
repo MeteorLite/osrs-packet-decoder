@@ -293,11 +293,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -363,11 +363,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -513,11 +513,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -594,11 +594,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -678,11 +678,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -1067,11 +1067,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -1101,11 +1101,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -1126,11 +1126,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -1170,11 +1170,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
@@ -1308,11 +1308,11 @@
     "structure": [
       {
         "method": "Int",
-        "argument": "hash"
+        "argument": "param1"
       },
       {
         "method": "Short",
-        "argument": "slot"
+        "argument": "param0"
       },
       {
         "method": "Short",
