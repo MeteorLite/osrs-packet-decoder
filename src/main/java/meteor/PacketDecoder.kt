@@ -3,9 +3,7 @@ package meteor
 import com.google.common.base.Stopwatch
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import meteor.deobfuscators.IF_BUTTON
-import meteor.deobfuscators.InitClientPackets
-import meteor.deobfuscators.MENU_ACTION
+import meteor.deobfuscators.*
 import net.runelite.asm.ClassGroup
 import net.runelite.deob.Deobfuscator
 import net.runelite.deob.ObfuscatedClientPacket
@@ -57,7 +55,7 @@ class PacketDecoder {
                 .create()
 
             // create a writer
-            val writer: Writer = Files.newBufferedWriter(Paths.get("./clientPackets.json"))
+            val writer: Writer = Files.newBufferedWriter(Paths.get("./data/clientPackets.json"))
 
             // convert user object to JSON file
             gson.toJson(clientPackets, writer)
@@ -68,6 +66,9 @@ class PacketDecoder {
             val unmappedClientPackets = (totalClientPackets - mappedClientPackets.size)
 
             logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets missing)")
+
+            RuneLiteApiClientPacketsClass.create()
+            RuneScapeApiClientPacketsClass.create()
         }
 
         private fun run(group: ClassGroup, deob: Deobfuscator) {
