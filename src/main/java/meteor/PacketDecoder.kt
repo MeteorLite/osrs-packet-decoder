@@ -3,7 +3,11 @@ package meteor
 import com.google.common.base.Stopwatch
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import meteor.deobfuscators.*
+import meteor.deobfuscators.IF_BUTTON
+import meteor.deobfuscators.MENU_ACTION
+import meteor.deobfuscators.RuneLiteApiClientPacketsClass
+import meteor.deobfuscators.RuneScapeApiClientPacketsClass
+import meteor.deobfuscators.InitClientPackets
 import net.runelite.asm.ClassGroup
 import net.runelite.deob.Deobfuscator
 import net.runelite.deob.ObfuscatedClientPacket
@@ -17,7 +21,7 @@ class PacketDecoder {
     companion object {
 
         val gamepack = File("./gamepacks/208.jar")
-        var classes : ClassGroup? = null
+        var classes: ClassGroup? = null
         val clientPackets = HashMap<Int, ObfuscatedClientPacket>()
         val mappedClientPackets = HashMap<Int, ObfuscatedClientPacket>()
         val logger = Logger("main")
@@ -78,7 +82,7 @@ class PacketDecoder {
             logger.info("${deob.javaClass.simpleName} took $stopwatch")
         }
 
-        fun getClientPacket(name: String) : ObfuscatedClientPacket? {
+        fun getClientPacket(name: String): ObfuscatedClientPacket? {
             for (clientPacket in clientPackets) {
                 if (clientPacket.value.name == name)
                     return clientPacket.value

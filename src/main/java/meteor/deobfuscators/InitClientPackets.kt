@@ -38,7 +38,6 @@ class InitClientPackets : Deobfuscator {
         var count = 0
 
         for (cf in group.classes) {
-
             if (cf.name.contains("/"))
                 continue
 

@@ -28,15 +28,10 @@ import meteor.PacketDecoder
 import net.runelite.asm.ClassGroup
 import net.runelite.asm.Method
 import net.runelite.asm.attributes.code.Instruction
-import net.runelite.asm.attributes.code.instructions.BiPush
-import net.runelite.asm.attributes.code.instructions.GetStatic
-import net.runelite.asm.attributes.code.instructions.ILoad
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual
-import net.runelite.asm.attributes.code.instructions.LDC
+import net.runelite.asm.attributes.code.instructions.*
 import net.runelite.deob.Deobfuscator
 import net.runelite.deob.ObfuscatedBufferStructure
 import net.runelite.deob.ObfuscatedClientPacket
-import java.lang.Exception
 
 class IF_BUTTON : Deobfuscator {
     override fun run(group: ClassGroup) {
@@ -71,17 +66,20 @@ class IF_BUTTON : Deobfuscator {
                                         }
 
                                     }
+
                                     1 -> {
                                         if (importantLines) {
                                             currentObfuscatedStep = 1
                                         }
 
                                     }
+
                                     2 -> {
                                         if (importantLines) {
                                             currentObfuscatedStep = 2
                                         }
                                     }
+
                                     3 -> {
                                         if (importantLines) {
                                             currentObfuscatedStep = 3
@@ -89,20 +87,24 @@ class IF_BUTTON : Deobfuscator {
                                     }
                                 }
                             }
+
                             is LDC -> {
                                 if (importantLines) {
                                     maxIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                                 }
                             }
+
                             is BiPush -> {
                                 if (importantLines) {
                                     maxIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                                 }
                             }
+
                             is GetStatic -> {
                                 if (importantLines) {
                                     if (!currentInstruction.toString().contains("PacketWriter")) {
-                                        val fieldName = currentInstruction.toString().split("ClientPacket.")[1].split(" ")[0]
+                                        val fieldName =
+                                            currentInstruction.toString().split("ClientPacket.")[1].split(" ")[0]
                                         usesClientPackets = true
                                     }
                                 }
@@ -139,17 +141,20 @@ class IF_BUTTON : Deobfuscator {
                             }
 
                         }
+
                         1 -> {
                             if (importantLines) {
                                 currentObfuscatedStep = 1
                             }
 
                         }
+
                         2 -> {
                             if (importantLines) {
                                 currentObfuscatedStep = 2
                             }
                         }
+
                         3 -> {
                             if (importantLines) {
                                 currentObfuscatedStep = 3
@@ -157,16 +162,19 @@ class IF_BUTTON : Deobfuscator {
                         }
                     }
                 }
+
                 is LDC -> {
                     if (importantLines) {
                         currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                     }
                 }
+
                 is BiPush -> {
                     if (importantLines) {
                         currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                     }
                 }
+
                 is GetStatic -> {
                     if (importantLines) {
                         if (!currentInstruction.toString().contains("PacketWriter")) {
@@ -186,6 +194,7 @@ class IF_BUTTON : Deobfuscator {
                     }
 
                 }
+
                 is InvokeVirtual -> {
                     if (importantLines) {
                         if (!currentInstruction.toString().contains("addNode")) {

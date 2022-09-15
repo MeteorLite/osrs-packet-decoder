@@ -72,22 +72,49 @@ class MENU_ACTION : Deobfuscator {
                             when (currentInstruction) {
                                 is InvokeVirtual -> {
                                     if (currentInstruction.toString().contains("PacketBuffer.")) {
-                                        currentStructureEncodingMethodName = currentInstruction.toString().split("PacketBuffer.")[1].split("(")[0]
+                                        currentStructureEncodingMethodName =
+                                            currentInstruction.toString().split("PacketBuffer.")[1].split("(")[0]
                                         if (hasId) {
-                                            currentStructure.add(ObfuscatedBufferStructure(currentStructureEncodingMethodName, "id"))
+                                            currentStructure.add(
+                                                ObfuscatedBufferStructure(
+                                                    currentStructureEncodingMethodName,
+                                                    "id"
+                                                )
+                                            )
                                         } else if (hasItemId) {
-                                            currentStructure.add(ObfuscatedBufferStructure(currentStructureEncodingMethodName, "itemId"))
+                                            currentStructure.add(
+                                                ObfuscatedBufferStructure(
+                                                    currentStructureEncodingMethodName,
+                                                    "itemId"
+                                                )
+                                            )
                                         } else if (hasParam0) {
-                                            currentStructure.add(ObfuscatedBufferStructure(currentStructureEncodingMethodName, "param0"))
+                                            currentStructure.add(
+                                                ObfuscatedBufferStructure(
+                                                    currentStructureEncodingMethodName,
+                                                    "param0"
+                                                )
+                                            )
                                         } else if (hasParam1) {
-                                            currentStructure.add(ObfuscatedBufferStructure(currentStructureEncodingMethodName, "param1"))
+                                            currentStructure.add(
+                                                ObfuscatedBufferStructure(
+                                                    currentStructureEncodingMethodName,
+                                                    "param1"
+                                                )
+                                            )
                                         } else {
-                                            currentStructure.add(ObfuscatedBufferStructure(currentStructureEncodingMethodName, currentStructureFieldName))
+                                            currentStructure.add(
+                                                ObfuscatedBufferStructure(
+                                                    currentStructureEncodingMethodName,
+                                                    currentStructureFieldName
+                                                )
+                                            )
                                         }
 
                                         resetHas()
                                     }
                                 }
+
                                 is GetStatic -> {
                                     val fieldInfo = currentInstruction.field
                                     var fieldName = ""
@@ -176,10 +203,8 @@ class MENU_ACTION : Deobfuscator {
                                         currentStructureFieldName = "worldX"
                                     else if (fieldInfo.toString().contains("KeyHandler_pressedKeys"))
                                         currentStructureFieldName = "shiftPressed"
-                                    else if (fieldInfo.toString().contains(".hash "))
-                                        currentStructureFieldName = "hash"
-
                                 }
+
                                 is ILoad -> {
                                     val paramater = currentInstruction.variableIndex
                                     if (paramater == 2) {
@@ -201,6 +226,7 @@ class MENU_ACTION : Deobfuscator {
                                         hasItemId = true
                                     }
                                 }
+
                                 is LDC -> {
                                     try {
                                         var constant = currentInstruction.constantAsInt
@@ -209,12 +235,13 @@ class MENU_ACTION : Deobfuscator {
 
                                             }
                                         }
-                                    } catch (_: Exception){}
+                                    } catch (_: Exception) {
+                                    }
                                 }
                             }
-                                if (toPrint < 50) {
-                                    toPrint++
-                                }
+                            if (toPrint < 50) {
+                                toPrint++
+                            }
                             currentInstruction = instructionsIterator.next()
                         }
                         break
