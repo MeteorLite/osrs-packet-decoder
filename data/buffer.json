@@ -1,11 +1,103 @@
 [
   {
+    "method": "writeByte",
+    "deobName": "writeByte"
+  },
+  {
     "method": "writeInt",
     "deobName": "writeInt"
   },
   {
+    "method": "writeLongMedium",
+    "deobName": "writeLongMedium"
+  },
+  {
+    "method": "writeLong",
+    "deobName": "writeLong"
+  },
+  {
+    "method": "readUnsignedByte",
+    "deobName": "readUnsignedByte"
+  },
+  {
+    "method": "readByte",
+    "deobName": "readByte"
+  },
+  {
+    "method": "readUnsignedShort",
+    "deobName": "readUnsignedShort"
+  },
+  {
+    "method": "readShort",
+    "deobName": "readShort"
+  },
+  {
     "method": "readInt",
     "deobName": "readInt"
+  },
+  {
+    "method": "readString",
+    "deobName": "readStringCp1252NullTerminated"
+  },
+  {
+    "method": "readShortSmart",
+    "deobName": "readShortSmart"
+  },
+  {
+    "method": "readUShortSmart",
+    "deobName": "readUShortSmart"
+  },
+  {
+    "method": "readUByteAdd",
+    "deobName": "method7955"
+  },
+  {
+    "method": "readUByteNeg",
+    "deobName": "method7954"
+  },
+  {
+    "method": "readUByteSub",
+    "deobName": "method8023"
+  },
+  {
+    "method": "readByteAdd",
+    "deobName": "method7975"
+  },
+  {
+    "method": "readByteNeg",
+    "deobName": "method7970"
+  },
+  {
+    "method": "readByteSub",
+    "deobName": "method7960"
+  },
+  {
+    "method": "writeShortLE",
+    "deobName": "method7961"
+  },
+  {
+    "method": "writeShortAdd",
+    "deobName": "method7962"
+  },
+  {
+    "method": "writeShortAddLE",
+    "deobName": "writeIntME"
+  },
+  {
+    "method": "readUShortLE",
+    "deobName": "method7964"
+  },
+  {
+    "method": "readUShortAdd",
+    "deobName": "method7965"
+  },
+  {
+    "method": "readShortAddLE",
+    "deobName": "method8143"
+  },
+  {
+    "method": "readShortLE",
+    "deobName": "method7967"
   },
   {
     "method": "writeIntLE",

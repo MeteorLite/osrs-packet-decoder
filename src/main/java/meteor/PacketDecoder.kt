@@ -75,7 +75,7 @@ class PacketDecoder {
 
             val unmappedClientPackets = (totalClientPackets - mappedClientPackets.size)
             totalClientPackets = 59
-            logger.info("Buffer: ${bufferMethods.size}/8")
+            logger.info("Buffer: ${bufferMethods.size}/31")
             logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets not implemented)")
             RuneLiteApiClientPacketsClass.create()
             RuneScapeApiClientPacketsClass.create()
