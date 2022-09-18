@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.deobfuscators
+package meteor.deobfuscators.client
 
 import meteor.PacketDecoder
 import net.runelite.asm.ClassGroup
@@ -32,8 +32,8 @@ import net.runelite.asm.attributes.code.instructions.ILoad
 import net.runelite.asm.attributes.code.instructions.InvokeVirtual
 import net.runelite.asm.attributes.code.instructions.LDC
 import net.runelite.deob.Deobfuscator
-import net.runelite.deob.ObfuscatedBufferStructure
-import net.runelite.deob.ObfuscatedClientPacket
+import meteor.ObfuscatedBufferStructure
+import meteor.ObfuscatedClientPacket
 
 class MENU_ACTION : Deobfuscator {
     var currentStructure: ArrayList<ObfuscatedBufferStructure> = ArrayList()
@@ -175,12 +175,11 @@ class MENU_ACTION : Deobfuscator {
                                                     48 -> it.name = "OPNPC6"
                                                     49 -> it.name = "OPOBJ6"
                                                 }
-                                                if (it.name == "BUTTON_CLICK")
-                                                    found += 3
-                                                else if (it.name == "OPOBJ6")
-                                                    found += 2
-                                                else
-                                                    found++
+                                                when (it.name) {
+                                                    "BUTTON_CLICK" -> found += 3
+                                                    "OPOBJ6" -> found += 2
+                                                    else -> found++
+                                                }
                                             }
                                         }
                                     }
@@ -229,7 +228,7 @@ class MENU_ACTION : Deobfuscator {
 
                                 is LDC -> {
                                     try {
-                                        var constant = currentInstruction.constantAsInt
+                                        val constant = currentInstruction.constantAsInt
                                         when (constant) {
                                             1 -> {
 

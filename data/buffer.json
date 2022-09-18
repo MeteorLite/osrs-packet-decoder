@@ -1,0 +1,34 @@
+[
+  {
+    "method": "writeInt",
+    "deobName": "writeInt"
+  },
+  {
+    "method": "readInt",
+    "deobName": "readInt"
+  },
+  {
+    "method": "writeIntLE",
+    "deobName": "method7916"
+  },
+  {
+    "method": "writeIntIME",
+    "deobName": "method7971"
+  },
+  {
+    "method": "writeIntME",
+    "deobName": "method7972"
+  },
+  {
+    "method": "readIntLE",
+    "deobName": "method7973"
+  },
+  {
+    "method": "readIntIME",
+    "deobName": "method7974"
+  },
+  {
+    "method": "readIntME",
+    "deobName": "method8135"
+  }
+]

@@ -1,3 +1,3 @@
-package net.runelite.deob
+package meteor
 
 class ObfuscatedBufferStructure(val method: String, val argument: String)

@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.deobfuscators
+package meteor.deobfuscators.client
 
 import meteor.PacketDecoder
 import net.runelite.asm.ClassGroup
@@ -30,8 +30,8 @@ import net.runelite.asm.Method
 import net.runelite.asm.attributes.code.Instruction
 import net.runelite.asm.attributes.code.instructions.*
 import net.runelite.deob.Deobfuscator
-import net.runelite.deob.ObfuscatedBufferStructure
-import net.runelite.deob.ObfuscatedClientPacket
+import meteor.ObfuscatedBufferStructure
+import meteor.ObfuscatedClientPacket
 
 class IF_BUTTON : Deobfuscator {
     override fun run(group: ClassGroup) {
@@ -44,7 +44,7 @@ class IF_BUTTON : Deobfuscator {
         var importantLines = false
         var ifButtonHandlerMethod: Method? = null
 
-        // find IF handler method
+        // This method doesn't get mapped, so we will search for it
         for (cf in group.classes) {
             for (m in cf.methods) {
                 if (m.code == null)
@@ -123,8 +123,6 @@ class IF_BUTTON : Deobfuscator {
 
         skipped = 0
         importantLines = false
-
-        // deobfuscate name/structure
 
         val instructionsIterator: MutableIterator<Instruction> = ifButtonHandlerMethod!!.code.instructions.iterator()
         var currentInstruction: Instruction = instructionsIterator.next()

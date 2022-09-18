@@ -3,14 +3,16 @@ package meteor
 import com.google.common.base.Stopwatch
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import meteor.deobfuscators.IF_BUTTON
-import meteor.deobfuscators.MENU_ACTION
-import meteor.deobfuscators.RuneLiteApiClientPacketsClass
-import meteor.deobfuscators.RuneScapeApiClientPacketsClass
-import meteor.deobfuscators.InitClientPackets
+import meteor.deobfuscators.Buffer
+import meteor.deobfuscators.client.IF_BUTTON
+import meteor.deobfuscators.client.MENU_ACTION
+import meteor.util.RuneLiteApiClientPacketsClass
+import meteor.util.RuneScapeApiClientPacketsClass
+import meteor.deobfuscators.client.InitClientPackets
+import meteor.util.RuneLiteApiBufferClass
+import meteor.util.RuneScapeApiBufferClass
 import net.runelite.asm.ClassGroup
 import net.runelite.deob.Deobfuscator
-import net.runelite.deob.ObfuscatedClientPacket
 import net.runelite.deob.util.JarUtil
 import java.io.File
 import java.io.Writer
@@ -24,6 +26,7 @@ class PacketDecoder {
         var classes: ClassGroup? = null
         val clientPackets = HashMap<Int, ObfuscatedClientPacket>()
         val mappedClientPackets = HashMap<Int, ObfuscatedClientPacket>()
+        val bufferMethods = ArrayList<BufferMethod>()
         val logger = Logger("main")
 
         @JvmStatic
@@ -38,12 +41,16 @@ class PacketDecoder {
             if (classes == null)
                 throw RuntimeException("Invalid gamepack path")
 
+            val classes = classes!!
+
             // Creates Objects with name / opcode / size
-            run(classes!!, InitClientPackets())
+            run(classes, InitClientPackets())
 
-            run(classes!!, IF_BUTTON())
+            run(classes, IF_BUTTON())
 
-            run(classes!!, MENU_ACTION())
+            run(classes, MENU_ACTION())
+
+            run(classes, Buffer())
 
             var totalClientPackets = 0
 
@@ -58,21 +65,22 @@ class PacketDecoder {
                 .setPrettyPrinting()
                 .create()
 
-            // create a writer
-            val writer: Writer = Files.newBufferedWriter(Paths.get("./data/clientPackets.json"))
-
-            // convert user object to JSON file
+            var writer: Writer = Files.newBufferedWriter(Paths.get("./data/clientPackets.json"))
             gson.toJson(clientPackets, writer)
+            writer.close()
 
-            // close writer
+            writer = Files.newBufferedWriter(Paths.get("./data/buffer.json"))
+            gson.toJson(bufferMethods, writer)
             writer.close()
 
             val unmappedClientPackets = (totalClientPackets - mappedClientPackets.size)
-
-            logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets missing)")
-
+            totalClientPackets = 59
+            logger.info("Buffer: ${bufferMethods.size}/8")
+            logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets not implemented)")
             RuneLiteApiClientPacketsClass.create()
             RuneScapeApiClientPacketsClass.create()
+            RuneLiteApiBufferClass.create()
+            RuneScapeApiBufferClass.create()
         }
 
         private fun run(group: ClassGroup, deob: Deobfuscator) {

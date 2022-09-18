@@ -1,4 +1,4 @@
-package meteor.deobfuscators
+package meteor.util
 
 import meteor.PacketDecoder
 import java.io.File

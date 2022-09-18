@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.deobfuscators
+package meteor.deobfuscators.client
 
 import meteor.PacketDecoder
 import net.runelite.asm.ClassGroup
@@ -30,7 +30,7 @@ import net.runelite.asm.attributes.code.Instruction
 import net.runelite.asm.attributes.code.instructions.Dup
 import net.runelite.asm.attributes.code.instructions.PutStatic
 import net.runelite.deob.Deobfuscator
-import net.runelite.deob.ObfuscatedClientPacket
+import meteor.ObfuscatedClientPacket
 
 class InitClientPackets : Deobfuscator {
     override fun run(group: ClassGroup) {
