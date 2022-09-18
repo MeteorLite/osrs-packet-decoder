@@ -18,7 +18,7 @@ object RuneScapeApiBufferClass {
             "int getOffset();\n" +
             "\n" +
             "@Import(\"offset\")\n" +
-            "void setOffset(int offset);"
+            "void setOffset(int offset);\n"
 
     val classFooter = "}"
 
@@ -150,9 +150,28 @@ object RuneScapeApiBufferClass {
         classText += "@Override\n"
         classText += "void writeLongMedium(long l);\n"
         classText += "\n"
+        classText += "@Import(\"${getDeobName("writeShort")}\")\n"
+        classText += "@Override\n"
+        classText += "void writeShort(int i);\n"
+        classText += "\n"
+        classText += "@Import(\"${getDeobName("writeByteAdd")}\")\n"
+        classText += "@Override\n"
+        classText += "void writeByteAdd(int i);\n"
+        classText += "\n"
+        classText += "@Import(\"${getDeobName("writeByteSub")}\")\n"
+        classText += "@Override\n"
+        classText += "void writeByteSub(int i);\n"
+        classText += "\n"
+        classText += "@Import(\"${getDeobName("writeByteNeg")}\")\n"
+        classText += "@Override\n"
+        classText += "void writeByteNeg(int i);\n"
+        classText += "\n"
+        classText += "@Import(\"${getDeobName("writeString")}\")\n"
+        classText += "@Override\n"
+        classText += "void writeString(String s);\n"
         classText += classFooter
 
-        File("./data/RSBuffer.java").writeText(classText)
+        File("./data/api-rs/RSBuffer.java").writeText(classText)
     }
 
     fun getDeobName(name: String) : String? {

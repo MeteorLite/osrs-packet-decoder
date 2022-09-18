@@ -13,6 +13,7 @@ int getOffset();
 
 @Import("offset")
 void setOffset(int offset);
+
 @Import("method7955")
 @Override
 int readUByteAdd();
@@ -137,4 +138,23 @@ void writeLong(long l);
 @Override
 void writeLongMedium(long l);
 
+@Import("writeShort")
+@Override
+void writeShort(int i);
+
+@Import("method7952")
+@Override
+void writeByteAdd(int i);
+
+@Import("method8004")
+@Override
+void writeByteSub(int i);
+
+@Import("method8136")
+@Override
+void writeByteNeg(int i);
+
+@Import("writeStringCp1252NullTerminated")
+@Override
+void writeString(String s);
 }

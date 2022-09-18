@@ -4,6 +4,10 @@
     "deobName": "writeByte"
   },
   {
+    "method": "writeShort",
+    "deobName": "writeShort"
+  },
+  {
     "method": "writeInt",
     "deobName": "writeInt"
   },
@@ -14,6 +18,10 @@
   {
     "method": "writeLong",
     "deobName": "writeLong"
+  },
+  {
+    "method": "writeString",
+    "deobName": "writeStringCp1252NullTerminated"
   },
   {
     "method": "readUnsignedByte",
@@ -46,6 +54,18 @@
   {
     "method": "readUShortSmart",
     "deobName": "readUShortSmart"
+  },
+  {
+    "method": "writeByteAdd",
+    "deobName": "method7952"
+  },
+  {
+    "method": "writeByteNeg",
+    "deobName": "method8136"
+  },
+  {
+    "method": "writeByteSub",
+    "deobName": "method8004"
   },
   {
     "method": "readUByteAdd",

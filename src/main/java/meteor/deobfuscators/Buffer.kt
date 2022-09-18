@@ -38,6 +38,7 @@ class Buffer : Deobfuscator {
                     var siPushes = 0
                     var iSubs = 0
                     var aLoads = 0
+                    var debugFieldName = ""
 
                     if (method.code == null)
                         continue
@@ -91,26 +92,26 @@ class Buffer : Deobfuscator {
                                 bipushes++
                             }
                         }
-/*                                            if (method.name == "readUnsignedByte") {
-                                                println(currentInstruction)
-                                            }*/
+                        if (debugFieldName.isNotEmpty() && method.name == debugFieldName) {
+                            println(currentInstruction)
+                        }
 
                         position++
                         currentInstruction = instructionsIterator.next()
                     }
-/*                                    if (method.name == "readUnsignedByte") {
-                                        if (firstISubPosition != -1)
-                                            println("firstIsub $firstISubPosition")
-                                        if (secondISubPosition != -1)
-                                            println("secondIsub $secondISubPosition")
-                                        if (firstBiPush != -1)
-                                            println("firstBiPush $firstBiPushPosition")
-                                        if (firstSiPushPosition != -1)
-                                            println("firstSiPush $firstSiPushPosition")
-                                        if (secondSiPushPosition != -1)
-                                            println("secondSiPush $secondSiPushPosition")
-                                        println("ldcs $ldcs bipushes $bipushes siPushes $siPushes isubs $iSubs aloads $aLoads instructions ${instructionsLength}")
-                                    }*/
+                    if (debugFieldName.isNotEmpty() && method.name == debugFieldName) {
+                        if (firstISubPosition != -1)
+                            println("firstIsub $firstISubPosition")
+                        if (secondISubPosition != -1)
+                            println("secondIsub $secondISubPosition")
+                        if (firstBiPush != -1)
+                            println("firstBiPush $firstBiPushPosition")
+                        if (firstSiPushPosition != -1)
+                            println("firstSiPush $firstSiPushPosition")
+                        if (secondSiPushPosition != -1)
+                            println("secondSiPush $secondSiPushPosition")
+                        println("ldcs $ldcs bipushes $bipushes siPushes $siPushes isubs $iSubs aloads $aLoads instructions ${instructionsLength}")
+                    }
                     if (ldcs == 2 && bipushes == 0 && siPushes == 2 && firstSiPushPosition == 13 && secondSiPushPosition == 15)
                         PacketDecoder.bufferMethods.add(BufferMethod("readUByteAdd", method.name))
                     if (ldcs == 3 && bipushes == 0 && siPushes == 1 && firstSiPushPosition == 15)
@@ -173,6 +174,16 @@ class Buffer : Deobfuscator {
                         PacketDecoder.bufferMethods.add(BufferMethod("writeLong", method.name))
                     if (ldcs == 12 && bipushes == 5 && siPushes == 0 && iSubs == 6)
                         PacketDecoder.bufferMethods.add(BufferMethod("writeLongMedium", method.name))
+                    if (ldcs == 4 && bipushes == 1 && siPushes == 0 && iSubs == 2 && firstBiPushPosition == 13)
+                        PacketDecoder.bufferMethods.add(BufferMethod("writeShort", method.name))
+                    if (ldcs == 2 && bipushes == 0 && siPushes == 1 && iSubs == 1 && instructionsLength == 20)
+                        PacketDecoder.bufferMethods.add(BufferMethod("writeByteAdd", method.name))
+                    if (ldcs == 2 && bipushes == 0 && siPushes == 1 && iSubs == 2 && instructionsLength == 20)
+                        PacketDecoder.bufferMethods.add(BufferMethod("writeByteSub", method.name))
+                    if (ldcs == 3 && bipushes == 0 && siPushes == 0 && iSubs == 2 && instructionsLength == 20)
+                        PacketDecoder.bufferMethods.add(BufferMethod("writeByteNeg", method.name))
+                    if (ldcs == 6 && bipushes == 0 && siPushes == 0 && iSubs == 1 && instructionsLength == 46)
+                        PacketDecoder.bufferMethods.add(BufferMethod("writeString", method.name))
                 }
         }
     }

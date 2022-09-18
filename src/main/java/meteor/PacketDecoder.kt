@@ -65,17 +65,17 @@ class PacketDecoder {
                 .setPrettyPrinting()
                 .create()
 
-            var writer: Writer = Files.newBufferedWriter(Paths.get("./data/clientPackets.json"))
+            var writer: Writer = Files.newBufferedWriter(Paths.get("./data/json/clientPackets.json"))
             gson.toJson(clientPackets, writer)
             writer.close()
 
-            writer = Files.newBufferedWriter(Paths.get("./data/buffer.json"))
+            writer = Files.newBufferedWriter(Paths.get("./data/json/buffer.json"))
             gson.toJson(bufferMethods, writer)
             writer.close()
 
             val unmappedClientPackets = (totalClientPackets - mappedClientPackets.size)
             totalClientPackets = 59
-            logger.info("Buffer: ${bufferMethods.size}/31")
+            logger.info("Buffer: ${bufferMethods.size}/36")
             logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets not implemented)")
             RuneLiteApiClientPacketsClass.create()
             RuneScapeApiClientPacketsClass.create()

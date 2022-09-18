@@ -49,7 +49,12 @@ object RuneLiteApiBufferClass {
         classText += "int readShortLE();\n"
         classText += "void writeLong(long l);\n"
         classText += "void writeLongMedium(long l);\n"
+        classText += "void writeShort(int i);\n"
+        classText += "void writeByteAdd(int i);\n"
+        classText += "void writeByteSub(int i);\n"
+        classText += "void writeByteNeg(int i);\n"
+        classText += "void writeString(String s);\n"
         classText += classFooter
-        File("./data/Buffer.java").writeText(classText)
+        File("./data/api/Buffer.java").writeText(classText)
     }
 }

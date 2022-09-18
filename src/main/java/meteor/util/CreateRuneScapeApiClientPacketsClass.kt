@@ -34,6 +34,6 @@ object RuneScapeApiClientPacketsClass {
         }
         classText += classFooter
 
-        File("./data/RSClientPacket.java").writeText(classText)
+        File("./data/api-rs/RSClientPacket.java").writeText(classText)
     }
 }

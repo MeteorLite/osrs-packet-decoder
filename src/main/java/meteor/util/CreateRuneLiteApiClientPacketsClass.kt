@@ -24,6 +24,6 @@ object RuneLiteApiClientPacketsClass {
         }
         classText += classFooter
 
-        File("./data/ClientPacket.java").writeText(classText)
+        File("./data/api/ClientPacket.java").writeText(classText)
     }
 }
