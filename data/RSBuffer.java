@@ -1,10 +1,18 @@
-package net.runelite.api;
+package net.runelite.rs.api;
 
-public interface Buffer extends Node
+import net.runelite.api.Buffer;
+import net.runelite.mapping.Import;
+
+public interface RSBuffer extends Buffer, RSNode
 {
+@Import("array")
 byte[] getPayload();
+
+@Import("offset")
 int getOffset();
 
+@Import("offset")
+void setOffset(int offset);
 @Import("writeInt")
 @Override
 void writeInt(int i);
@@ -27,14 +35,14 @@ int readInt();
 
 @Import("method7973")
 @Override
-int readInt();
+int readIntLE();
 
 @Import("method7974")
 @Override
-int readInt();
+int readIntIME();
 
 @Import("method8135")
 @Override
-int readInt();
+int readIntME();
 
 }

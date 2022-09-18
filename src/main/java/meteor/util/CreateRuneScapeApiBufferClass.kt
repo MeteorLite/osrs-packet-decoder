@@ -9,8 +9,6 @@ object RuneScapeApiBufferClass {
             "import net.runelite.api.Buffer;\n" +
             "import net.runelite.mapping.Import;\n" +
             "\n" +
-            "import static net.runelite.rs.api.PacketFields.*;\n" +
-            "\n" +
             "public interface RSBuffer extends Buffer, RSNode\n" +
             "{\n" +
             "@Import(\"array\")\n" +
@@ -26,7 +24,7 @@ object RuneScapeApiBufferClass {
 
 
     fun create() {
-        var classText = RuneLiteApiBufferClass.classHeader
+        var classText = classHeader
         classText += "\n"
         classText += "@Import(\"${getDeobName("writeInt")}\")\n"
         classText += "@Override\n"
@@ -50,15 +48,15 @@ object RuneScapeApiBufferClass {
         classText += "\n"
         classText += "@Import(\"${getDeobName("readIntLE")}\")\n"
         classText += "@Override\n"
-        classText += "int readInt();\n"
+        classText += "int readIntLE();\n"
         classText += "\n"
         classText += "@Import(\"${getDeobName("readIntIME")}\")\n"
         classText += "@Override\n"
-        classText += "int readInt();\n"
+        classText += "int readIntIME();\n"
         classText += "\n"
         classText += "@Import(\"${getDeobName("readIntME")}\")\n"
         classText += "@Override\n"
-        classText += "int readInt();\n"
+        classText += "int readIntME();\n"
         classText += "\n"
         classText += classFooter
 
