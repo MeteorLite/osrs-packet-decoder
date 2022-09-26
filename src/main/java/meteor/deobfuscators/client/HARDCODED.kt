@@ -13,6 +13,7 @@ class HARDCODED : Deobfuscator {
     override fun run(group: ClassGroup) {
         eventMouseMove()
         eventKeyboard()
+        moveGameClick()
     }
 
     fun eventMouseMove() {
@@ -28,5 +29,14 @@ class HARDCODED : Deobfuscator {
         eventKeyboard.name = "EVENT_KEYBOARD"
         eventKeyboard.structure.add(ObfuscatedBufferStructure("method7983", "time"))
         eventKeyboard.structure.add(ObfuscatedBufferStructure("method8136", "keyPressed"))
+    }
+
+    fun moveGameClick() {
+        val eventKeyboard = PacketDecoder.getClientPacket("field3033")!!
+        eventKeyboard.name = "MOVE_GAMECLICK"
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("writeByte", "_five_"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method7962", "worldX"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("writeShort", "worldY"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method7952", "ctrlPressed"))
     }
 }

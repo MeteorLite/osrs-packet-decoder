@@ -60,6 +60,7 @@ ClientPacket LOGIN_STATISTICS();
 ClientPacket OPOBJ3();
 ClientPacket IF_BUTTON5();
 ClientPacket OPOBJ1();
+ClientPacket MOVE_GAMECLICK();
 ClientPacket OPNPC3();
 ClientPacket OPNPC6();
 ClientPacket OPHELDT();

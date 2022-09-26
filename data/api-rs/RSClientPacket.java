@@ -237,6 +237,10 @@ RSClientPacket IF_BUTTON5();
 @Override
 RSClientPacket OPOBJ1();
 
+@Import("field3033")
+@Override
+RSClientPacket MOVE_GAMECLICK();
+
 @Import("field3034")
 @Override
 RSClientPacket OPNPC3();
