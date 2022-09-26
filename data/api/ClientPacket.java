@@ -4,8 +4,10 @@ public interface ClientPacket
 {
 int getId();
 int getLength();
+ClientPacket EVENT_KEYBOARD();
 ClientPacket BUTTON_CLICK();
 ClientPacket OPPLAYER8();
+ClientPacket REFLECTION_CHECK_REPLY();
 ClientPacket OPOBJ2();
 ClientPacket OPHELD5();
 ClientPacket OPNPCT();
@@ -54,12 +56,14 @@ ClientPacket IF_BUTTON7();
 ClientPacket IF1_BUTTON2();
 ClientPacket OPLOC4();
 ClientPacket IF1_BUTTON5();
+ClientPacket LOGIN_STATISTICS();
 ClientPacket OPOBJ3();
 ClientPacket IF_BUTTON5();
 ClientPacket OPOBJ1();
 ClientPacket OPNPC3();
 ClientPacket OPNPC6();
 ClientPacket OPHELDT();
+ClientPacket EVENT_MOUSE_CLICK();
 ClientPacket IF1_BUTTON3();
 ClientPacket OPLOC1();
 }

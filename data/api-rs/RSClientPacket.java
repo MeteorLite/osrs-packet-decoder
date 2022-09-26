@@ -13,6 +13,10 @@ int getId();
 @Override
 int getLength();
 
+@Import("field3023")
+@Override
+RSClientPacket EVENT_KEYBOARD();
+
 @Import("field2939")
 @Override
 RSClientPacket BUTTON_CLICK();
@@ -20,6 +24,10 @@ RSClientPacket BUTTON_CLICK();
 @Import("field2988")
 @Override
 RSClientPacket OPPLAYER8();
+
+@Import("field2960")
+@Override
+RSClientPacket REFLECTION_CHECK_REPLY();
 
 @Import("field2945")
 @Override
@@ -213,6 +221,10 @@ RSClientPacket OPLOC4();
 @Override
 RSClientPacket IF1_BUTTON5();
 
+@Import("field3021")
+@Override
+RSClientPacket LOGIN_STATISTICS();
+
 @Import("field3026")
 @Override
 RSClientPacket OPOBJ3();
@@ -236,6 +248,10 @@ RSClientPacket OPNPC6();
 @Import("field3038")
 @Override
 RSClientPacket OPHELDT();
+
+@Import("field3039")
+@Override
+RSClientPacket EVENT_MOUSE_CLICK();
 
 @Import("field3040")
 @Override

@@ -4,11 +4,9 @@ import com.google.common.base.Stopwatch
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import meteor.deobfuscators.Buffer
-import meteor.deobfuscators.client.IF_BUTTON
-import meteor.deobfuscators.client.MENU_ACTION
+import meteor.deobfuscators.client.*
 import meteor.util.RuneLiteApiClientPacketsClass
 import meteor.util.RuneScapeApiClientPacketsClass
-import meteor.deobfuscators.client.InitClientPackets
 import meteor.util.RuneLiteApiBufferClass
 import meteor.util.RuneScapeApiBufferClass
 import net.runelite.asm.ClassGroup
@@ -50,13 +48,17 @@ class PacketDecoder {
 
             run(classes, MENU_ACTION())
 
+            run(classes, TIMERS_REFLECTION())
+
+            run(classes, HARDCODED())
+
             run(classes, Buffer())
 
-            var totalClientPackets = 0
+            var expectedClientPackets = 0
 
 
             for (c in clientPackets) {
-                totalClientPackets++
+                expectedClientPackets++
                 if (c.value.structure.isNotEmpty())
                     mappedClientPackets[c.key] = c.value
             }
@@ -73,10 +75,10 @@ class PacketDecoder {
             gson.toJson(bufferMethods, writer)
             writer.close()
 
-            val unmappedClientPackets = (totalClientPackets - mappedClientPackets.size)
-            totalClientPackets = 59
+            val missingClientPackets = (expectedClientPackets - mappedClientPackets.size)
+            expectedClientPackets = 63
             logger.info("Buffer: ${bufferMethods.size}/36")
-            logger.info("ClientPackets: ${mappedClientPackets.size}/$totalClientPackets ($unmappedClientPackets not implemented)")
+            logger.info("ClientPackets: ${mappedClientPackets.size}/$expectedClientPackets ($missingClientPackets not implemented)")
             RuneLiteApiClientPacketsClass.create()
             RuneScapeApiClientPacketsClass.create()
             RuneLiteApiBufferClass.create()

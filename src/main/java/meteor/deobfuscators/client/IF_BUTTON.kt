@@ -42,19 +42,17 @@ class IF_BUTTON : Deobfuscator {
         var currentPacket: ObfuscatedClientPacket? = null
         var currentObfuscatedStructure: ArrayList<ObfuscatedBufferStructure>? = ArrayList()
         var importantLines = false
-        var ifButtonHandlerMethod: Method? = null
 
-        // This method doesn't get mapped, so we will search for it
         for (cf in group.classes) {
             for (m in cf.methods) {
                 if (m.code == null)
                     continue
-                val instructionsIterator: MutableIterator<Instruction> = m.code.instructions.iterator()
-                var currentInstruction: Instruction = instructionsIterator.next()
-                var maxIfOpcode = 0
-                var usesClientPackets = false
-                while (instructionsIterator.hasNext()) {
-                    try {
+
+                if (m.isStatic && m.name == "widgetDefaultMenuAction") {
+                    val instructionsIterator: MutableIterator<Instruction> = m.code.instructions.iterator()
+                    var currentInstruction: Instruction = instructionsIterator.next()
+
+                    while (instructionsIterator.hasNext()) {
                         when (currentInstruction) {
                             is ILoad -> {
                                 when (currentInstruction.variableIndex) {
@@ -64,7 +62,6 @@ class IF_BUTTON : Deobfuscator {
                                         } else {
                                             importantLines = true
                                         }
-
                                     }
 
                                     1 -> {
@@ -90,127 +87,57 @@ class IF_BUTTON : Deobfuscator {
 
                             is LDC -> {
                                 if (importantLines) {
-                                    maxIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
+                                    currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                                 }
                             }
 
                             is BiPush -> {
                                 if (importantLines) {
-                                    maxIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
+                                    currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
                                 }
                             }
 
                             is GetStatic -> {
                                 if (importantLines) {
                                     if (!currentInstruction.toString().contains("PacketWriter")) {
-                                        val fieldName =
-                                            currentInstruction.toString().split("ClientPacket.")[1].split(" ")[0]
-                                        usesClientPackets = true
+                                        val fieldName = currentInstruction.toString().split("ClientPacket.")[1].split(" ")[0]
+                                        currentPacket = PacketDecoder.getClientPacket(fieldName)!!
+                                        currentPacket.deobname = fieldName
+                                    }
+
+                                    if (currentObfuscatedStep == 3) {
+                                        if (currentPacket != null) {
+                                            currentPacket.name = "IF_BUTTON$currentIfOpcode"
+                                            currentPacket.structure = currentObfuscatedStructure!!
+                                            currentObfuscatedStructure = ArrayList()
+                                        }
+                                        currentObfuscatedStep = 0
                                     }
                                 }
 
                             }
-                        }
-                    } catch (_: Exception) {
 
-                    }
-                    currentInstruction = instructionsIterator.next()
-                }
-                if (maxIfOpcode == 10 && usesClientPackets)
-                    ifButtonHandlerMethod = m
-            }
-        }
-
-        skipped = 0
-        importantLines = false
-
-        val instructionsIterator: MutableIterator<Instruction> = ifButtonHandlerMethod!!.code.instructions.iterator()
-        var currentInstruction: Instruction = instructionsIterator.next()
-
-        while (instructionsIterator.hasNext()) {
-            when (currentInstruction) {
-                is ILoad -> {
-                    when (currentInstruction.variableIndex) {
-                        0 -> {
-                            if (skipped != 2) {
-                                skipped++
-                            } else {
-                                importantLines = true
-                            }
-
-                        }
-
-                        1 -> {
-                            if (importantLines) {
-                                currentObfuscatedStep = 1
-                            }
-
-                        }
-
-                        2 -> {
-                            if (importantLines) {
-                                currentObfuscatedStep = 2
+                            is InvokeVirtual -> {
+                                if (importantLines) {
+                                    if (!currentInstruction.toString().contains("addNode")) {
+                                        val type = currentInstruction.toString().split("PacketBuffer.write")[1].split("(I)V")[0]
+                                        var argument = ""
+                                        when (currentObfuscatedStep) {
+                                            1 -> argument = "param1"
+                                            2 -> argument = "param0"
+                                            3 -> argument = "itemId"
+                                        }
+                                        val structure = ObfuscatedBufferStructure(type, argument)
+                                        currentObfuscatedStructure!!.add(structure)
+                                    }
+                                }
                             }
                         }
 
-                        3 -> {
-                            if (importantLines) {
-                                currentObfuscatedStep = 3
-                            }
-                        }
-                    }
-                }
-
-                is LDC -> {
-                    if (importantLines) {
-                        currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
-                    }
-                }
-
-                is BiPush -> {
-                    if (importantLines) {
-                        currentIfOpcode = currentInstruction.toString().split(" ")[1].toInt()
-                    }
-                }
-
-                is GetStatic -> {
-                    if (importantLines) {
-                        if (!currentInstruction.toString().contains("PacketWriter")) {
-                            val fieldName = currentInstruction.toString().split("ClientPacket.")[1].split(" ")[0]
-                            currentPacket = PacketDecoder.getClientPacket(fieldName)!!
-                            currentPacket.deobname = fieldName
-                        }
-
-                        if (currentObfuscatedStep == 3) {
-                            if (currentPacket != null) {
-                                currentPacket.name = "IF_BUTTON$currentIfOpcode"
-                                currentPacket.structure = currentObfuscatedStructure!!
-                                currentObfuscatedStructure = ArrayList()
-                            }
-                            currentObfuscatedStep = 0
-                        }
-                    }
-
-                }
-
-                is InvokeVirtual -> {
-                    if (importantLines) {
-                        if (!currentInstruction.toString().contains("addNode")) {
-                            val type = currentInstruction.toString().split("PacketBuffer.write")[1].split("(I)V")[0]
-                            var argument = ""
-                            when (currentObfuscatedStep) {
-                                1 -> argument = "param1"
-                                2 -> argument = "param0"
-                                3 -> argument = "itemId"
-                            }
-                            val structure = ObfuscatedBufferStructure(type, argument)
-                            currentObfuscatedStructure!!.add(structure)
-                        }
+                        currentInstruction = instructionsIterator.next()
                     }
                 }
             }
-
-            currentInstruction = instructionsIterator.next()
         }
     }
 }

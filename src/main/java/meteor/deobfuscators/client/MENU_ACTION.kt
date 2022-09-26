@@ -92,14 +92,20 @@ class MENU_ACTION : Deobfuscator {
                                             currentStructure.add(
                                                 ObfuscatedBufferStructure(
                                                     currentStructureEncodingMethodName,
-                                                    "param0"
+                                                    when (currentPacket!!.name) {
+                                                        "IF_BUTTONT" -> "slot"
+                                                        else -> "param0"
+                                                    }
                                                 )
                                             )
                                         } else if (hasParam1) {
                                             currentStructure.add(
                                                 ObfuscatedBufferStructure(
                                                     currentStructureEncodingMethodName,
-                                                    "param1"
+                                                    when (currentPacket!!.name) {
+                                                        "IF_BUTTONT" -> "widgetId"
+                                                        else -> "param1"
+                                                    }
                                                 )
                                             )
                                         } else {
@@ -192,8 +198,9 @@ class MENU_ACTION : Deobfuscator {
                                         currentStructureFieldName = "selectedItemSlot"
                                     else if (fieldInfo.toString().contains(".selectedSpellChildIndex "))
                                         currentStructureFieldName = "selectedSpellChildIndex"
-                                    else if (fieldInfo.toString().contains(".selectedSpellWidget "))
+                                    else if (fieldInfo.toString().contains(".selectedSpellWidget ")) {
                                         currentStructureFieldName = "selectedSpellWidget"
+                                    }
                                     else if (fieldInfo.toString().contains(".selectedSpellItemId "))
                                         currentStructureFieldName = "selectedSpellItemId"
                                     else if (fieldInfo.toString().contains(".baseY "))
