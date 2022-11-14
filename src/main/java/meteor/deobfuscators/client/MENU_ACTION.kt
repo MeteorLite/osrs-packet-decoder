@@ -207,7 +207,7 @@ class MENU_ACTION : Deobfuscator {
                                         currentStructureFieldName = "worldY"
                                     else if (fieldInfo.toString().contains(".baseX "))
                                         currentStructureFieldName = "worldX"
-                                    else if (fieldInfo.toString().contains("KeyHandler_pressedKeys"))
+                                    else if (fieldInfo.toString().contains("keyHandlerInstance"))
                                         currentStructureFieldName = "shiftPressed"
                                 }
 

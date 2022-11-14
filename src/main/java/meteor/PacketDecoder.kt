@@ -20,7 +20,7 @@ import java.nio.file.Paths
 class PacketDecoder {
     companion object {
 
-        val gamepack = File("./gamepacks/208.jar")
+        val gamepack = File("./gamepacks/209.jar")
         var classes: ClassGroup? = null
         val clientPackets = HashMap<Int, ObfuscatedClientPacket>()
         val mappedClientPackets = HashMap<Int, ObfuscatedClientPacket>()
@@ -29,12 +29,7 @@ class PacketDecoder {
 
         @JvmStatic
         fun main(args: Array<String>) {
-
-            var revisions = 0
-
             classes = JarUtil.load(gamepack)
-
-            println("Loaded $revisions revisions")
 
             if (classes == null)
                 throw RuntimeException("Invalid gamepack path")

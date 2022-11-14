@@ -22,7 +22,7 @@ dependencies {
     implementation(group = "org.ow2.asm", name = "asm-util", version = "9.0")
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
     implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
-    implementation(group = "meteor", name = "logger", version = "1.6.2")
+    implementation(group = "meteor", name = "logger", version = "1.7.0")
     compileOnly("org.projectlombok:lombok:1.18.24")
 
     testImplementation(kotlin("test"))

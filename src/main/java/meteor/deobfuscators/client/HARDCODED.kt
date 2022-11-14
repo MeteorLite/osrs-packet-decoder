@@ -17,7 +17,7 @@ class HARDCODED : Deobfuscator {
     }
 
     fun eventMouseMove() {
-        val eventMouseMove = PacketDecoder.getClientPacket("field3039")!!
+        val eventMouseMove = PacketDecoder.getClientPacket("field3051")!!
         eventMouseMove.name = "EVENT_MOUSE_CLICK"
         eventMouseMove.structure.add(ObfuscatedBufferStructure("writeShort", "mouseInfo"))
         eventMouseMove.structure.add(ObfuscatedBufferStructure("writeShort", "x"))
@@ -25,18 +25,18 @@ class HARDCODED : Deobfuscator {
     }
 
     fun eventKeyboard() {
-        val eventKeyboard = PacketDecoder.getClientPacket("field3023")!!
+        val eventKeyboard = PacketDecoder.getClientPacket("field3004")!!
         eventKeyboard.name = "EVENT_KEYBOARD"
-        eventKeyboard.structure.add(ObfuscatedBufferStructure("method7983", "time"))
-        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8136", "keyPressed"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8449", "time"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8434", "keyPressed"))
     }
 
     fun moveGameClick() {
-        val eventKeyboard = PacketDecoder.getClientPacket("field3033")!!
+        val eventKeyboard = PacketDecoder.getClientPacket("field3091")!!
         eventKeyboard.name = "MOVE_GAMECLICK"
         eventKeyboard.structure.add(ObfuscatedBufferStructure("writeByte", "_five_"))
-        eventKeyboard.structure.add(ObfuscatedBufferStructure("method7962", "worldX"))
-        eventKeyboard.structure.add(ObfuscatedBufferStructure("writeShort", "worldY"))
-        eventKeyboard.structure.add(ObfuscatedBufferStructure("method7952", "ctrlPressed"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8443", "worldY"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8546", "ctrlPressed"))
+        eventKeyboard.structure.add(ObfuscatedBufferStructure("method8619", "worldX"))
     }
 }
