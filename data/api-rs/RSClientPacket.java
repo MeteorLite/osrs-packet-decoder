@@ -35,7 +35,7 @@ RSClientPacket OPNPC5();
 
 @Import("field3007")
 @Override
-RSClientPacket OPLOC3();
+RSClientPacket OPOBJ3();
 
 @Import("field3042")
 @Override
@@ -43,11 +43,11 @@ RSClientPacket IF_BUTTON3();
 
 @Import("field3010")
 @Override
-RSClientPacket OPLOC4();
+RSClientPacket OPOBJ4();
 
 @Import("field3011")
 @Override
-RSClientPacket OPOBJ4();
+RSClientPacket OPLOC4();
 
 @Import("field3012")
 @Override
@@ -59,7 +59,7 @@ RSClientPacket OPNPC3();
 
 @Import("field3014")
 @Override
-RSClientPacket OPOBJU();
+RSClientPacket OPLOCU();
 
 @Import("field3015")
 @Override
@@ -83,7 +83,7 @@ RSClientPacket IF_BUTTON8();
 
 @Import("field3049")
 @Override
-RSClientPacket OPOBJ3();
+RSClientPacket OPLOC3();
 
 @Import("field3021")
 @Override
@@ -99,11 +99,11 @@ RSClientPacket LOGIN_STATISTICS();
 
 @Import("field3041")
 @Override
-RSClientPacket OPOBJ5();
+RSClientPacket OPLOC5();
 
 @Import("field3063")
 @Override
-RSClientPacket OPOBJ2();
+RSClientPacket OPLOC2();
 
 @Import("field3000")
 @Override
@@ -135,7 +135,7 @@ RSClientPacket IF1_BUTTON1();
 
 @Import("field3044")
 @Override
-RSClientPacket OPOBJT();
+RSClientPacket OPLOCT();
 
 @Import("field3046")
 @Override
@@ -147,7 +147,7 @@ RSClientPacket IF_BUTTON6();
 
 @Import("field3050")
 @Override
-RSClientPacket OPLOCT();
+RSClientPacket OPOBJT();
 
 @Import("field3051")
 @Override
@@ -215,7 +215,7 @@ RSClientPacket IF1_BUTTON2();
 
 @Import("field3078")
 @Override
-RSClientPacket OPLOC1();
+RSClientPacket OPOBJ1();
 
 @Import("field3079")
 @Override
@@ -223,7 +223,7 @@ RSClientPacket OPNPC2();
 
 @Import("field3080")
 @Override
-RSClientPacket OPLOCU();
+RSClientPacket OPOBJU();
 
 @Import("field3017")
 @Override
@@ -243,7 +243,7 @@ RSClientPacket OPPLAYER4();
 
 @Import("field3089")
 @Override
-RSClientPacket OPLOC2();
+RSClientPacket OPOBJ2();
 
 @Import("field3091")
 @Override
@@ -259,7 +259,7 @@ RSClientPacket OPPLAYERU();
 
 @Import("field3037")
 @Override
-RSClientPacket OPOBJ1();
+RSClientPacket OPLOC1();
 
 @Import("field3102")
 @Override
