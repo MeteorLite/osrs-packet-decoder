@@ -14,27 +14,27 @@ int getOffset();
 @Import("offset")
 void setOffset(int offset);
 
-@Import("method8435")
+@Import("readUnsignedByteA")
 @Override
 int readUByteAdd();
 
-@Import("method8436")
+@Import("readUnsignedByteC")
 @Override
 int readUByteNeg();
 
-@Import("method8623")
+@Import("readUnsignedByteS")
 @Override
 int readUByteSub();
 
-@Import("method8617")
+@Import("readByteA")
 @Override
 byte readByteAdd();
 
-@Import("method8469")
+@Import("readByteC")
 @Override
 byte readByteNeg();
 
-@Import("method8440")
+@Import("readByteS")
 @Override
 byte readByteSub();
 
@@ -74,43 +74,43 @@ void writeByte(int i);
 @Override
 void writeInt(int i);
 
-@Import("method8453")
+@Import("writeIntLE")
 @Override
 void writeIntLE(int i);
 
-@Import("method8635")
+@Import("method2382")
 @Override
 void writeIntIME(int i);
 
-@Import("method8437")
+@Import("method2383")
 @Override
 void writeIntME(int i);
 
-@Import("writeIntME")
+@Import("writeShortLE")
 @Override
 void writeShortLE(int i);
 
-@Import("method8619")
+@Import("writeShortA")
 @Override
 void writeShortAdd(int i);
 
-@Import("method8443")
+@Import("writeShortLEA")
 @Override
 void writeShortAddLE(int i);
 
-@Import("method8444")
+@Import("readUnsignedShortLE")
 @Override
 int readUShortLE();
 
-@Import("method8484")
+@Import("readUnsignedShortA")
 @Override
 int readUShortAdd();
 
-@Import("method8446")
+@Import("readUnsignedShortLEA")
 @Override
 int readShortAddLE();
 
-@Import("method8448")
+@Import("null")
 @Override
 int readShortLE();
 
@@ -118,15 +118,15 @@ int readShortLE();
 @Override
 int readInt();
 
-@Import("method8456")
+@Import("readIntLE")
 @Override
 int readIntLE();
 
-@Import("method8457")
+@Import("method2373")
 @Override
 int readIntIME();
 
-@Import("method8458")
+@Import("method2384")
 @Override
 int readIntME();
 
@@ -142,15 +142,15 @@ void writeLongMedium(long l);
 @Override
 void writeShort(int i);
 
-@Import("method8630")
+@Import("writeByteA")
 @Override
 void writeByteAdd(int i);
 
-@Import("method8434")
+@Import("writeByteS")
 @Override
 void writeByteSub(int i);
 
-@Import("method8546")
+@Import("writeByteC")
 @Override
 void writeByteNeg(int i);
 

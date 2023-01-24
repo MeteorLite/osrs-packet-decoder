@@ -20,7 +20,7 @@ import java.nio.file.Paths
 class PacketDecoder {
     companion object {
 
-        val gamepack = File("./gamepacks/209.jar")
+        val gamepack = File("./gamepacks/210.jar")
         var classes: ClassGroup? = null
         val clientPackets = HashMap<Int, ObfuscatedClientPacket>()
         val mappedClientPackets = HashMap<Int, ObfuscatedClientPacket>()
@@ -71,7 +71,10 @@ class PacketDecoder {
             writer.close()
 
             val missingClientPackets = (expectedClientPackets - mappedClientPackets.size)
-            expectedClientPackets = 63
+            expectedClientPackets = 60
+            if (HARDCODED.ran)
+                expectedClientPackets += 3
+
             logger.info("Buffer: ${bufferMethods.size}/36")
             logger.info("ClientPackets: ${mappedClientPackets.size}/$expectedClientPackets ($missingClientPackets not implemented)")
             RuneLiteApiClientPacketsClass.create()
